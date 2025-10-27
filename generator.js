@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-async function Logger(){
+async function Generator(){
     let log = ['error', 'info', 'warn'];
 
 
@@ -41,6 +41,5 @@ async function Logger(){
 
 }
 
-Logger();
-module.exports = Logger;
-
+Generator();
+module.exports = Generator;
