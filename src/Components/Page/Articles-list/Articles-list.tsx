@@ -59,7 +59,7 @@ export default function ArticlesListPage() {
                     <h1>Управление статьями</h1>
                     <p className="page-description">Просмотр всех опубликованных статей</p>
                 </div>
-                <Link to="/create" className="create-button">
+                <Link to="/articles/create" className="create-button">
                     Создать новую статью
                 </Link>
             </header>
@@ -88,8 +88,7 @@ export default function ArticlesListPage() {
 
             <div className="articles-grid">
                 {filteredArticles.map((article) => (
-                    <Link to={`/${article.id}`} key={article.id} className="article-card">
-                        <div className="article-category">{article.category}</div>
+                    <Link to={`/articles/${article.id}`} key={article.id} className="article-card">                        <div className="article-category">{article.category}</div>
                         <h2 className="article-title">{article.title}</h2>
                         <p className="article-excerpt">{article.excerpt}</p>
                         <div className="article-meta">

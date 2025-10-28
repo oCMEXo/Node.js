@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Article-create.css";
 
@@ -9,19 +9,25 @@ export default function CreateArticlePage() {
     const [excerpt, setExcerpt] = useState("");
     const [content, setContent] = useState("");
     const [author, setAuthor] = useState("");
-    const editorRef = useRef(null);
+    const editorRef = useRef<HTMLDivElement>(null);
 
     const categories = ["Tutorial", "Advanced", "Design", "News", "Opinion"];
 
-    const handleFormat = (command, value) => {
-        // execCommand устарел, но для простого демо можно использовать
+    const handleFormat = (command: string, value?: string) => {
+        // execCommand устарел, но для простого демо работает
         if (document && typeof document.execCommand === "function") {
             document.execCommand(command, false, value);
             editorRef.current?.focus();
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleEditorInput = () => {
+        if (editorRef.current) {
+            setContent(editorRef.current.innerHTML);
+        }
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
         const articleData = {
@@ -33,8 +39,13 @@ export default function CreateArticlePage() {
             date: new Date().toISOString().split("T")[0],
         };
 
-        // Простая проверка
-        if (!articleData.title || !articleData.author || !articleData.excerpt || !articleData.content) {
+        // Проверка на пустые поля
+        if (
+            !articleData.title ||
+            !articleData.author ||
+            !articleData.excerpt ||
+            !articleData.content.replace(/<(.|\n)*?>/g, "").trim() // проверка на пустой HTML
+        ) {
             alert("Пожалуйста, заполните все обязательные поля!");
             return;
         }
@@ -49,20 +60,14 @@ export default function CreateArticlePage() {
         setContent("");
         if (editorRef.current) editorRef.current.innerHTML = "";
 
-        // Переход обратно к списку статей
-        navigate("/");
-    };
-
-    const handleEditorInput = () => {
-        if (editorRef.current) {
-            setContent(editorRef.current.innerHTML);
-        }
+        // Навигация обратно к списку статей
+        navigate("/articles");
     };
 
     return (
         <div className="create-article-container">
             <div className="create-article-header">
-                <Link to="/" className="back-link">
+                <Link to="/articles" className="back-link">
                     ← Отменить
                 </Link>
                 <div>
@@ -170,7 +175,7 @@ export default function CreateArticlePage() {
                         <div className="toolbar-group">
                             <button
                                 type="button"
-                                onClick={() => handleFormat("formatBlock", "h2")}
+                                onClick={() => handleFormat("formatBlock", "<h2>")}
                                 className="toolbar-button"
                                 title="Заголовок 2"
                             >
@@ -178,7 +183,7 @@ export default function CreateArticlePage() {
                             </button>
                             <button
                                 type="button"
-                                onClick={() => handleFormat("formatBlock", "h3")}
+                                onClick={() => handleFormat("formatBlock", "<h3>")}
                                 className="toolbar-button"
                                 title="Заголовок 3"
                             >
@@ -186,7 +191,7 @@ export default function CreateArticlePage() {
                             </button>
                             <button
                                 type="button"
-                                onClick={() => handleFormat("formatBlock", "p")}
+                                onClick={() => handleFormat("formatBlock", "<p>")}
                                 className="toolbar-button"
                                 title="Параграф"
                             >
@@ -253,13 +258,18 @@ export default function CreateArticlePage() {
 
                 {/* Кнопки */}
                 <div className="form-actions">
-                    <Link to="/" className="cancel-button">
+                    <Link to="/articles" className="cancel-button">
                         Отменить
                     </Link>
                     <button
                         type="submit"
                         className="submit-button"
-                        disabled={!title || !author || !excerpt || !content}
+                        disabled={
+                            !title.trim() ||
+                            !author.trim() ||
+                            !excerpt.trim() ||
+                            !content.replace(/<(.|\n)*?>/g, "").trim()
+                        }
                     >
                         Опубликовать статью
                     </button>
