@@ -1,55 +1,40 @@
-import  { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Articles-list.css";
 
-// Временные данные (mock)
-const mockArticles = [
-    {
-        id: "1",
-        title: "Getting Started with React",
-        excerpt: "Learn the basics of React and how to build your first component.",
-        author: "John Doe",
-        date: "2024-01-15",
-        category: "Tutorial",
-    },
-    {
-        id: "2",
-        title: "Advanced TypeScript Patterns",
-        excerpt: "Explore advanced TypeScript patterns for better type safety.",
-        author: "Jane Smith",
-        date: "2024-01-20",
-        category: "Advanced",
-    },
-    {
-        id: "3",
-        title: "CSS Grid Layout Guide",
-        excerpt: "Master CSS Grid with practical examples and best practices.",
-        author: "Mike Johnson",
-        date: "2024-01-25",
-        category: "Design",
-    },
-    {
-        id: "4",
-        title: "State Management in React",
-        excerpt: "Compare different state management solutions for React applications.",
-        author: "Sarah Williams",
-        date: "2024-02-01",
-        category: "Tutorial",
-    },
-];
-
 export default function ArticlesListPage() {
+    const [data, setData] = useState({ articles: [], status: "idle", error: null });
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
 
-    const categories = ["All", ...Array.from(new Set(mockArticles.map((a) => a.category)))];
+    useEffect(() => {
+        setData(d => ({ ...d, status: "loading" }));
+        fetch("http://localhost:8080/api/articles")
+            .then(res => {
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                return res.json();
+            })
+            .then(json => setData({ articles: json.articles || [], status: "done", error: null }))
+            .catch(err => setData({ articles: [], status: "error", error: err.message }));
+    }, []);
 
-    const filteredArticles = mockArticles.filter((article) => {
+    const categoryOrder = ["Tutorial", "Advanced", "Design", "News", "Opinion"];
+    const categories = ["All", ...categoryOrder.filter(cat => data.articles.some(a => a.category === cat))];
+
+    const filteredArticles = data.articles.filter(article => {
         const matchesSearch =
             article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             article.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
         const matchesCategory = selectedCategory === "All" || article.category === selectedCategory;
         return matchesSearch && matchesCategory;
+    });
+
+    const sortedArticles = [...filteredArticles].sort((a, b) => {
+        const indexA = categoryOrder.indexOf(a.category);
+        const indexB = categoryOrder.indexOf(b.category);
+        const safeIndexA = indexA === -1 ? categoryOrder.length : indexA;
+        const safeIndexB = indexB === -1 ? categoryOrder.length : indexB;
+        return safeIndexA - safeIndexB;
     });
 
     return (
@@ -74,9 +59,9 @@ export default function ArticlesListPage() {
                 />
 
                 <div className="category-filters">
-                    {categories.map((category) => (
+                    {categories.map((category, idx) => (
                         <button
-                            key={category}
+                            key={idx}
                             className={`category-button ${selectedCategory === category ? "active" : ""}`}
                             onClick={() => setSelectedCategory(category)}
                         >
@@ -87,21 +72,22 @@ export default function ArticlesListPage() {
             </div>
 
             <div className="articles-grid">
-                {filteredArticles.map((article) => (
-                    <Link to={`/articles/${article.id}`} key={article.id} className="article-card">                        <div className="article-category">{article.category}</div>
-                        <h2 className="article-title">{article.title}</h2>
-                        <p className="article-excerpt">{article.excerpt}</p>
+                {sortedArticles.map(a => (
+                    <Link to={`/articles/${a.id}`} key={a.id} className="article-card">
+                        <div className="article-category">{a.category}</div>
+                        <h2 className="article-title">{a.title}</h2>
+                        <p className="article-excerpt">{a.excerpt}</p>
                         <div className="article-meta">
-                            <span className="article-author">{article.author}</span>
-                            <span className="article-date">{article.date}</span>
+                            <span className="article-author">{a.author}</span>
+                            <span className="article-date">{new Date(a.createdAt).toLocaleDateString()}</span>
                         </div>
                     </Link>
                 ))}
             </div>
 
-            {filteredArticles.length === 0 && (
+            {sortedArticles.length === 0 && (
                 <div className="no-results">
-                    <p>Статьи не найдены. Попробуйте изменить критерии поиска.</p>
+                    <p>No result</p>
                 </div>
             )}
         </div>

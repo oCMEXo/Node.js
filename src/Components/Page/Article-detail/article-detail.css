@@ -81,9 +81,9 @@
 }
 
 .author-avatar {
-    width: 48px;
+    width: 150px;
     height: 48px;
-    border-radius: 50%;
+    border-radius: 5px;
     background: linear-gradient(135deg, #2563eb, #7c3aed);
     color: white;
     display: flex;

@@ -1,49 +1,52 @@
 import { useParams, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "./Article-detail.css";
 
-// Mock data for full articles
-const mockArticlesData: Record<string, any> = {
-    "1": {
-        id: "1",
-        title: "Getting Started with React",
-        author: "John Doe",
-        date: "2024-01-15",
-        category: "Tutorial",
-        readTime: "5 min read",
-        content: `
-      <h2>Introduction to React</h2>
-      <p>React is a powerful JavaScript library for building user interfaces. It was developed by Facebook and has become one of the most popular tools for frontend development.</p>
-      <h3>Why Choose React?</h3>
-      <ul>
-        <li><strong>Component-Based Architecture:</strong> Build encapsulated components that manage their own state.</li>
-        <li><strong>Virtual DOM:</strong> React uses a virtual DOM to optimize rendering performance.</li>
-        <li><strong>Rich Ecosystem:</strong> Access to thousands of libraries and tools.</li>
-        <li><strong>Strong Community:</strong> Large community support and extensive documentation.</li>
-      </ul>
-    `,
-    },
-    "2": {
-        id: "2",
-        title: "Advanced TypeScript Patterns",
-        author: "Jane Smith",
-        date: "2024-01-20",
-        category: "Advanced",
-        readTime: "8 min read",
-        content: `<h2>Mastering TypeScript</h2><p>...</p>`,
-    },
-    // другие статьи...
-};
+interface Article {
+    id: string;
+    title: string;
+    author: string;
+    date?: string;
+    category: string;
+    readTime?: string;
+    content: string;
+}
 
 export default function ArticleDetailPage() {
     const { id } = useParams<{ id: string }>();
-    const article = id ? mockArticlesData[id] : null;
+    const [article, setArticle] = useState<Article | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-    if (!article) {
+    useEffect(() => {
+        if (!id) return;
+
+        setLoading(true);
+        fetch(`http://localhost:8080/api/articles/${id}`)
+            .then((res) => {
+                if (!res.ok) throw new Error("Статья не найдена");
+                return res.json();
+            })
+            .then((data) => {
+                setArticle(data.article);
+                setLoading(false);
+            })
+            .catch((err) => {
+                setError(err.message);
+                setLoading(false);
+            });
+    }, [id]);
+
+    if (loading) {
+        return <div className="article-detail-container">Загрузка статьи...</div>;
+    }
+
+    if (error || !article) {
         return (
             <div className="article-detail-container">
                 <div className="article-not-found">
                     <h1>Статья не найдена</h1>
-                    <p>Запрашиваемая статья не существует или была удалена.</p>
+                    <p>{error || "Запрашиваемая статья не существует или была удалена."}</p>
                     <Link to="/articles" className="back-link">
                         ← Вернуться к списку статей
                     </Link>
@@ -65,9 +68,8 @@ export default function ArticleDetailPage() {
 
                     <div className="article-metadata">
                         <div className="author-info">
-                            <div className="author-avatar">{article.author[0]}</div>
+                            <div className="author-avatar">{article.author}</div>
                             <div>
-                                <div className="author-name">{article.author}</div>
                                 <div className="article-date">{article.date}</div>
                             </div>
                         </div>
@@ -81,11 +83,7 @@ export default function ArticleDetailPage() {
                 />
 
                 <footer className="article-footer">
-                    <div className="article-tags">
-                        <span className="tag">React</span>
-                        <span className="tag">JavaScript</span>
-                        <span className="tag">Web Development</span>
-                    </div>
+
 
                     <div className="article-actions">
                         <button className="action-button">
