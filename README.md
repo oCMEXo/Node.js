@@ -26,3 +26,14 @@ Open your terminal and navigate to the project folder:
 
 ```bash
 cd path/to/project
+```
+
+```bash
+npm i
+```
+```bash
+node server.js
+```
+
+
+
