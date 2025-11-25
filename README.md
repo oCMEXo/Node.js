@@ -1,29 +1,45 @@
-# Articles Attachments & Real-Time Notifications
 
-This project extends a simple Articles API with:
+# Articles App – Backend + Frontend
 
-- **File attachments for articles** (images + PDFs)
-- **Real-time notifications** via WebSockets (Socket.IO)
+Small demo project that extends a basic Articles API with:
 
-Backend and frontend are separated:
+- CRUD for articles
+- File attachments (JPG / PNG / PDF)
+- Real-time notifications via WebSockets (Socket.IO)
+- PostgreSQL + Sequelize with an `articles` table and migration
+- Simple frontend to interact with all of that
 
-- Backend: Node.js + Express + Multer + Socket.IO
-- Frontend: Plain HTML + CSS + JavaScript
+## Project structure
 
----
+```text
+project/
+  backend/
+    server.js
+    package.json
+    .env
+    config/
+      config.js
+    models/
+      index.js
+      article.js
+    migrations/
+      20251125090000-create-articles.js
+    uploads/
+  frontend/
+    index.html
+    script.js
+    styles.css
+```
 
-## 🔧 Backend Setup
-
-### 1. Install dependencies and run server
+## Backend setup
 
 ```bash
 cd backend
-
 npm install
-
+npm run db:migrate
 node server.js
 ```
-### 2. Run frontend
-`If you use Webstorm, when hovering over the index.html page, you need to specify the browser option in which you want to open the page. `
 
-`If you are using VsCode, you need to click on the button in the lower right corner on "Go Live".`
+## Frontend
+
+Open `frontend/index.html` in a browser.
