@@ -21,30 +21,13 @@
 
 ```bash
 npm install
-Создай базу данных PostgreSQL (если её нет):
-
-bash
-Copy code
-createdb sse_assignment
-Настрой файл окружения .env (он уже включён):
-
-env
-Copy code
-DB_HOST=127.0.0.1
-DB_PORT=5432
-DB_NAME=sse_assignment
-DB_USER=postgres
-DB_PASSWORD=postgres
-🛠 Запуск миграций
-Создать таблицы:
-
-bash
-Copy code
+```
+```bash
 npm run db:migrate
-▶️ Запуск приложения
-bash
-Copy code
+```
+```bash
 npm start
+```
 Приложение:
 
 подключится к базе,
