@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ff3cd35a-de92-48ce-9b16-f417f25391c1" name="Changes" comment="feat: hm 6">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/330083f5-bbce-4a0a-9fee-fa18eecadae6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/330083f5-bbce-4a0a-9fee-fa18eecadae6/storage_v2/_src_/database/Node.IiIlAA/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schema.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/init-db.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/article_detail.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/article_form.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/articles.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/workspace_form.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/workspaces.ejs" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="database-setup" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;oCMEXo&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:oCMEXo/Node.js.git&quot;,
+    &quot;accountId&quot;: &quot;b8760afb-8ba7-42a5-a5d6-805f090fe658&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="35jVQOj2f1XXHpIyHbptyyG5Erl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "JavaScript Debug.localhost:3000.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "work-with-SQL-DB",
+    "javascript.nodejs.core.library.configured.version": "22.15.0",
+    "javascript.nodejs.core.library.typings.version": "22.15.35",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/artem/Desktop/Node",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.nodejs",
+    "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2025.2.5\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\artem\Desktop\Node" />
+      <recent name="C:\Users\artem\Desktop\Node\db" />
+      <recent name="C:\Users\artem\Desktop\Node\backend" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="localhost:3000" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.localhost:3000" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-WS-252.28238.10" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ff3cd35a-de92-48ce-9b16-f417f25391c1" name="Changes" comment="" />
+      <created>1763623450603</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1763623450603</updated>
+      <workItem from="1763623451770" duration="3418000" />
+      <workItem from="1763909224755" duration="4241000" />
+      <workItem from="1764066975717" duration="1663000" />
+      <workItem from="1764075640580" duration="84000" />
+      <workItem from="1764076070860" duration="4700000" />
+      <workItem from="1764231423106" duration="3029000" />
+      <workItem from="1764943933629" duration="3368000" />
+      <workItem from="1765285421158" duration="1272000" />
+    </task>
+    <task id="LOCAL-00001" summary="Done API-extension">
+      <option name="closed" value="true" />
+      <created>1763910919324</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1763910919324</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fix: add README.md">
+      <option name="closed" value="true" />
+      <created>1763911151554</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1763911151554</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Done 4">
+      <option name="closed" value="true" />
+      <created>1763912869698</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1763912869698</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix: commit package.json and package-lock.json">
+      <option name="closed" value="true" />
+      <created>1764067362818</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1764067362818</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix: backend commit package.json and package-lock.json">
+      <option name="closed" value="true" />
+      <created>1764067434735</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1764067434735</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat: push hometask 5">
+      <option name="closed" value="true" />
+      <created>1764080220986</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1764080220987</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: push hometask 5">
+      <option name="closed" value="true" />
+      <created>1764944949699</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1764944949699</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fix: README.md">
+      <option name="closed" value="true" />
+      <created>1764945362513</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1764945362513</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: hm 6">
+      <option name="closed" value="true" />
+      <created>1764947033402</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1764947033402</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Done API-extension" />
+    <MESSAGE value="fix: add README.md" />
+    <MESSAGE value="Done 4" />
+    <MESSAGE value="fix: commit package.json and package-lock.json" />
+    <MESSAGE value="fix: backend commit package.json and package-lock.json" />
+    <MESSAGE value="feat: push hometask 5" />
+    <MESSAGE value="fix: README.md" />
+    <MESSAGE value="feat: hm 6" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: hm 6" />
+  </component>
+</project>
