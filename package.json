@@ -1,0 +1,11 @@
+{
+  "name": "logs-assignment-app",
+  "version": "1.0.0",
+  "private": true,
+  "main": "generator.js",
+  "scripts": {
+    "start:generator": "node generator.js",
+    "start:analyzer": "node analyzer.js"
+  },
+  "dependencies": {}
+}

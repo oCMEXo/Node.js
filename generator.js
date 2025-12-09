@@ -1,45 +1,37 @@
-const fs = require('fs').promises;
-const path = require('path');
+const path = require("path");
+const Logger = require("./logger");
 
-async function Generator(){
-    let log = ['error', 'info', 'warn'];
+const logsRoot = path.join(__dirname, "logs");
+const logger = new Logger(logsRoot);
 
+let lastFolderName = null;
+let counter = 1;
 
-    let CountDir = 0
-    let CurrentDir = ''
-
-    async function CreateFolder() {
-        CountDir++
-        CurrentDir = `NodeTest${CountDir}`
-        try {
-            return fs.mkdir(CurrentDir);
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
-    await CreateFolder();
-
-    setInterval(CreateFolder, 60000);
-
-    setInterval(async () => {
-        if (!CurrentDir) return;
-
-
-        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-        const fileName = `log_${timestamp}.txt`;
-        const filePath = path.join(CurrentDir, fileName);
-        const logMessage = log[Math.floor(Math.random() * log.length)]
-
-        try {
-            await fs.writeFile(filePath, `Create LogDir ${filePath}: ${logMessage}`);
-            console.log(`Create LogDir ${filePath}: ${logMessage}`);
-        } catch (error) {
-            console.log(error);
-        }
-    }, 10000)
-
+function pickRandomType() {
+  const types = [Logger.TYPES.SUCCESS, Logger.TYPES.ERROR];
+  const index = Math.floor(Math.random() * types.length);
+  return types[index];
 }
 
-Generator();
-module.exports = Generator;
+async function writeRandomLog() {
+  try {
+    const type = pickRandomType();
+    const message = type === Logger.TYPES.SUCCESS
+      ? "Operation succeeded " + counter
+      : "Operation failed " + counter;
+    const info = await logger.log(type, message);
+    if (lastFolderName !== info.folderName) {
+      lastFolderName = info.folderName;
+      const banner = "[FOLDER] Active log folder " + info.folderName + " at " + info.dirPath;
+      console.log(banner);
+    }
+    console.log("[" + new Date().toISOString() + "]", type.toUpperCase(), "-", message, "(" + info.fileName + ")");
+    counter += 1;
+  } catch (err) {
+    console.error("Log generator error:", err.message);
+  }
+}
+
+console.log("Log generator started. Logs root:", logsRoot);
+writeRandomLog();
+setInterval(writeRandomLog, 10000);
