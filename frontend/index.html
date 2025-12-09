@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Articles API</title>
+    <style>
+      body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 0; background: #f3f4f6; }
+      header { background: #111827; color: white; padding: 1rem 1.5rem; }
+      header h1 { margin: 0 0 .25rem 0; font-size: 1.4rem; }
+      header p { margin: 0; font-size: .9rem; color: #e5e7eb; }
+      main { max-width: 960px; margin: 1.5rem auto; padding: 0 1rem 2rem; display: grid; grid-template-columns: 260px 1fr; gap: 1rem; }
+      .column { background: white; border-radius: .75rem; box-shadow: 0 1px 3px rgba(0,0,0,.1); padding: .75rem 1rem; }
+      .column h2 { margin-top: 0; font-size: 1rem; }
+      #articles-list { list-style: none; padding: 0; margin: 0; max-height: 400px; overflow-y: auto; }
+      #articles-list li { padding: .4rem .3rem; border-bottom: 1px solid #e5e7eb; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+      #articles-list li span { font-size: .9rem; }
+      #articles-list li small { color: #6b7280; font-size: .75rem; }
+      #articles-list li:hover { background: #f3f4ff; }
+      .article-view-title { margin: 0 0 .5rem 0; font-size: 1.1rem; font-weight: 600; }
+      .article-view-body { border: 1px solid #e5e7eb; border-radius: .5rem; padding: .6rem .7rem; min-height: 120px; background: #f9fafb; font-size: .9rem; }
+      .editor-toolbar { margin-bottom: .5rem; display: flex; gap: .25rem; flex-wrap: wrap; }
+      .editor-toolbar button { border-radius: .4rem; border: 1px solid #d1d5db; background: #f9fafb; padding: .2rem .5rem; font-size: .8rem; cursor: pointer; }
+      .editor-toolbar button:hover { background: #e5e7eb; }
+      #editor { border: 1px solid #d1d5db; border-radius: .5rem; min-height: 120px; padding: .4rem .5rem; background: white; font-size: .9rem; }
+      #editor:focus { outline: 2px solid #2563eb; outline-offset: 1px; }
+      input[type="text"] { width: 100%; padding: .4rem .5rem; border-radius: .5rem; border: 1px solid #d1d5db; font-size: .9rem; margin-bottom: .5rem; }
+      button.primary { background: #2563eb; color: white; border: none; border-radius: .5rem; padding: .4rem .7rem; font-size: .9rem; cursor: pointer; }
+      button.primary:hover { background: #1d4ed8; }
+      .error-box { background: #fee2e2; color: #991b1b; padding: .5rem .7rem; border-radius: .5rem; font-size: .85rem; margin-bottom: .5rem; }
+      .error-box ul { margin: 0; padding-left: 1.2rem; }
+      .muted { color: #6b7280; font-size: .85rem; }
+      @media (max-width: 768px) {
+        main { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Articles</h1>
+      <p>Assignment 2: API + file storage + WYSIWYG</p>
+    </header>
+    <main>
+      <section class="column">
+        <h2>Articles</h2>
+        <p class="muted">Click an article to view its content.</p>
+        <ul id="articles-list"></ul>
+      </section>
+      <section class="column">
+        <div id="error-box" class="error-box" style="display:none;"></div>
+        <div id="view-panel">
+          <h2>Selected article</h2>
+          <p class="muted" id="view-empty">No article selected.</p>
+          <h3 class="article-view-title" id="view-title" style="display:none;"></h3>
+          <div class="article-view-body" id="view-content" style="display:none;"></div>
+        </div>
+        <hr style="margin: 1rem 0;" />
+        <div id="create-panel">
+          <h2>Create new article</h2>
+          <input id="title-input" type="text" placeholder="Title" />
+          <div class="editor-toolbar">
+            <button type="button" data-cmd="bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"><i>I</i></button>
+            <button type="button" data-cmd="underline"><u>U</u></button>
+            <button type="button" data-cmd="insertUnorderedList">• List</button>
+          </div>
+          <div id="editor" contenteditable="true"></div>
+          <div style="margin-top:.5rem;">
+            <button id="save-btn" class="primary">Save article</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
