@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="card">
+    <h1>Вход</h1>
+    <p>Войди и получи JWT. После входа откроется защищённая Logic page.</p>
+    <form id="form">
+      <label>Email</label>
+      <input id="email" type="email" autocomplete="email" required />
+      <label>Пароль</label>
+      <input id="password" type="password" autocomplete="current-password" required />
+      <div class="row">
+        <button type="submit">Войти</button>
+        <a href="/register.html" class="small">Создать аккаунт</a>
+      </div>
+      <div id="alert" class="alert"></div>
+    </form>
+  </div>
+  <script src="/login.js"></script>
+</body>
+</html>
