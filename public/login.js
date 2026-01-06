@@ -19,8 +19,6 @@ form.addEventListener("submit", async (e) => {
     body: JSON.stringify({ email, password })
   });
 
-  const data = await r.json().catch(() => ({}));
   if (!r.ok) return show("Неверный email или пароль");
-
-  location.href = "/logic.html";
+  location.href = "/app.html";
 });

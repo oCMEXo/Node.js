@@ -1,27 +1,41 @@
-## Auth (Node.js + PostgreSQL) — Registration + Login + JWT + Protected Logic page
+## Existing app + Auth extension (Node.js + PostgreSQL)
 
-### 1) Подготовка БД (через pgAdmin или psql)
-1. Создай базу: `auth_jwt_pg`
-2. Выполни скрипт `db/init.sql`
+Защищённая зона — это основное приложение (Articles) с CRUD-операциями, которые доступны только при валидном JWT.
 
-### 2) Настройка окружения
-Скопируй `.env.example` в `.env` и укажи свои значения:
-- `DATABASE_URL`
-- `JWT_SECRET`
+### База данных (pgAdmin)
+1) Создай базу `auth_jwt_pg`
+2) Выполни миграцию: `migrations/001_init.sql`
 
-### 3) Запуск
+Там создаются:
+- `users`
+- `articles`
+
+### Env
+В репозитории есть `.env.example`.
+Скопируй в `.env` и заполни `DATABASE_URL` и `JWT_SECRET`.
+
+### Запуск
 ```bash
 npm i
 npm run dev
 ```
 
-Открой:
-- `http://localhost:3000/register.html` (public)
-- `http://localhost:3000/login.html` (public)
-- `http://localhost:3000/logic.html` (protected)
+### Страницы
+Public:
+- `/register.html`
+- `/login.html`
 
-### Как работает защита
-- JWT выдаётся на `/api/login` и кладётся в HttpOnly cookie `token`
-- `logic.html` и `/api/logic` доступны только при валидном токене
-- если токена нет/он истёк/битый — редирект на `/login.html` или 401 для API
-- logout очищает cookie
+Protected:
+- `/app.html` (основное приложение: статьи)
+
+### API
+Public:
+- `POST /api/register`
+- `POST /api/login`
+- `POST /api/logout`
+
+Protected:
+- `GET /api/me`
+- `GET /api/articles`
+- `POST /api/articles`
+- `DELETE /api/articles/:id`

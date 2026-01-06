@@ -6,4 +6,8 @@ function isStrongPassword(s) {
   return typeof s === "string" && s.length >= 8;
 }
 
-module.exports = { isEmail, isStrongPassword };
+function nonEmptyText(s, maxLen) {
+  return typeof s === "string" && s.trim().length > 0 && s.trim().length <= maxLen;
+}
+
+module.exports = { isEmail, isStrongPassword, nonEmptyText };
