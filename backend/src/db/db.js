@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const dbPath = process.env.DB_PATH || "./data/app.db";
-
 export const db = new Database(dbPath);
 db.pragma("journal_mode = WAL");
 

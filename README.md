@@ -1,55 +1,38 @@
-# TZ9 RBAC Assignment – Reference Implementation (Backend + Frontend)
+FINAL PROJECT – Assignments 9 + 10 (RBAC + Search)
 
-This is a **clean reference project** implementing the assignment requirements:
+This project fully implements:
+- Assignment 9: User Management (RBAC: admin / user)
+- Assignment 10: Article Search (title + content)
 
-- Users have roles: `admin` | `user`
-- Only article creator **or** admin can edit an article
+Features:
+- Users have roles (admin / user)
+- Only article owner OR admin can edit/delete articles
 - Admin-only User Management page:
-  - lists all users + roles
-  - allows admins to change other users' roles
+  - View all users
+  - Change user roles
 - Backend enforces RBAC on protected endpoints
-- Frontend hides admin navigation + protects `/admin`
+- Search by title OR content (case-insensitive)
+- Search integrated into article list page
 
-> If you want me to "fix your existing code" exactly, upload your project as a `.zip` and I will apply these changes directly.
-
-## Tech
+Tech:
 - Backend: Node.js + Express + SQLite (better-sqlite3) + JWT
-- Frontend: React (Vite)
+- Frontend: React + Vite
 
-## Run (local)
+Run:
 
-### 1) Backend
-```bash
+Backend:
 cd backend
-npm i
+npm install
+mkdir data
 npm run migrate
 npm run seed:admin
 npm run dev
-```
 
-Backend runs on `http://localhost:4000`
-
-Default admin after seeding:
-- email: `admin@example.com`
-- password: `admin12345`
-
-### 2) Frontend
-```bash
+Frontend:
 cd frontend
-npm i
+npm install
 npm run dev
-```
 
-Frontend runs on `http://localhost:5173`
-
-## API quick list
-- `POST /auth/register`
-- `POST /auth/login`
-- `GET /auth/me` (auth)
-- `GET /articles` (public)
-- `POST /articles` (auth)
-- `PUT /articles/:id` (auth + owner or admin)
-- `DELETE /articles/:id` (auth + owner or admin)
-- `GET /admin/users` (admin)
-- `PATCH /admin/users/:id/role` (admin)
-
+Admin login:
+email: admin@example.com
+password: admin12345

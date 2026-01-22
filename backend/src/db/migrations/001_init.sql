@@ -1,4 +1,3 @@
--- Users with roles
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   email TEXT NOT NULL UNIQUE,
@@ -7,7 +6,6 @@ CREATE TABLE IF NOT EXISTS users (
   created_at TEXT NOT NULL
 );
 
--- Articles with author
 CREATE TABLE IF NOT EXISTS articles (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT NOT NULL,
@@ -17,5 +15,3 @@ CREATE TABLE IF NOT EXISTS articles (
   updated_at TEXT NOT NULL,
   FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE
 );
-
-CREATE INDEX IF NOT EXISTS idx_articles_author_id ON articles(author_id);

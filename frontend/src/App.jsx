@@ -1,67 +1,34 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
-import { api, getUser, setToken, setUser } from "./api.js";
-import Login from "./pages/Login.jsx";
-import Register from "./pages/Register.jsx";
+import React, { useEffect, useState } from "react";
+import { Routes, Route, Link, Navigate } from "react-router-dom";
 import Articles from "./pages/Articles.jsx";
-import AdminUsers from "./pages/AdminUsers.jsx";
-
-function AdminRoute({ user, children }) {
-  if (!user) return <Navigate to="/login" replace />;
-  if (user.role !== "admin") return <Navigate to="/" replace />;
-  return children;
-}
+import Admin from "./pages/Admin.jsx";
+import { api } from "./api.js";
 
 export default function App() {
-  const [user, setUserState] = useState(getUser());
-  const nav = useNavigate();
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // try to refresh user if token exists
-    (async () => {
-      try {
-        const me = await api.me();
-        setUser(me.user);
-        setUserState(me.user);
-      } catch {
-        // ignore
-      }
-    })();
+    api.me().then(r => setUser(r.user)).catch(() => {});
   }, []);
 
-  const logout = () => {
-    setToken(null);
-    setUser(null);
-    setUserState(null);
-    nav("/login");
-  };
-
   return (
-    <div style={{ maxWidth: 980, margin: "20px auto", fontFamily: "system-ui, sans-serif" }}>
-      <header style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 16 }}>
-        <Link to="/">Articles</Link>
-        {!user && <Link to="/login">Login</Link>}
-        {!user && <Link to="/register">Register</Link>}
-        {user?.role === "admin" && <Link to="/admin">User Management</Link>}
-        <div style={{ marginLeft: "auto" }}>
-          {user ? (
-            <span style={{ display: "inline-flex", gap: 10, alignItems: "center" }}>
-              <span>{user.email} ({user.role})</span>
-              <button onClick={logout}>Logout</button>
-            </span>
-          ) : null}
-        </div>
+    <div className="max-w-6xl mx-auto p-6">
+      <header className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-bold">Articles Platform</h1>
+        <nav className="flex gap-4">
+          <Link to="/" className="text-blue-600 hover:underline">Articles</Link>
+          {user?.role === "admin" && (
+            <Link to="/admin" className="text-blue-600 hover:underline">User Management</Link>
+          )}
+        </nav>
       </header>
 
       <Routes>
-        <Route path="/" element={<Articles user={user} />} />
-        <Route path="/login" element={<Login onAuth={(u, t) => { setUserState(u); setUser(u); setToken(t); nav("/"); }} />} />
-        <Route path="/register" element={<Register onAuth={(u, t) => { setUserState(u); setUser(u); setToken(t); nav("/"); }} />} />
-        <Route path="/admin" element={
-          <AdminRoute user={user}>
-            <AdminUsers user={user} />
-          </AdminRoute>
-        } />
+        <Route path="/" element={<Articles />} />
+        <Route
+          path="/admin"
+          element={user?.role === "admin" ? <Admin /> : <Navigate to="/" />}
+        />
       </Routes>
     </div>
   );
