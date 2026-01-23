@@ -1,55 +1,39 @@
-# TZ9 RBAC Assignment – Reference Implementation (Backend + Frontend)
+1. Install dependencies:
 
-This is a **clean reference project** implementing the assignment requirements:
-
-- Users have roles: `admin` | `user`
-- Only article creator **or** admin can edit an article
-- Admin-only User Management page:
-  - lists all users + roles
-  - allows admins to change other users' roles
-- Backend enforces RBAC on protected endpoints
-- Frontend hides admin navigation + protects `/admin`
-
-> If you want me to "fix your existing code" exactly, upload your project as a `.zip` and I will apply these changes directly.
-
-## Tech
-- Backend: Node.js + Express + SQLite (better-sqlite3) + JWT
-- Frontend: React (Vite)
-
-## Run (local)
-
-### 1) Backend
 ```bash
-cd backend
-npm i
-npm run migrate
-npm run seed:admin
-npm run dev
+npm install
 ```
 
-Backend runs on `http://localhost:4000`
+2. Create a PostgreSQL database (example):
 
-Default admin after seeding:
-- email: `admin@example.com`
-- password: `admin12345`
-
-### 2) Frontend
-```bash
-cd frontend
-npm i
-npm run dev
+```sql
+CREATE DATABASE versioned_articles;
 ```
 
-Frontend runs on `http://localhost:5173`
+3. Configure environment:
 
-## API quick list
-- `POST /auth/register`
-- `POST /auth/login`
-- `GET /auth/me` (auth)
-- `GET /articles` (public)
-- `POST /articles` (auth)
-- `PUT /articles/:id` (auth + owner or admin)
-- `DELETE /articles/:id` (auth + owner or admin)
-- `GET /admin/users` (admin)
-- `PATCH /admin/users/:id/role` (admin)
+- copy `.env.example` to `.env`
+- update DB credentials if needed
 
+Example `.env`:
+
+```env
+PORT=3000
+DB_HOST=localhost
+DB_USER=postgres
+DB_PASSWORD=postgres
+DB_NAME=versioned_articles
+JWT_SECRET=supersecret
+```
+
+4. Sync schema from Sequelize models and seed default workspaces:
+
+```bash
+npm run sync-db
+```
+
+5. Start the app:
+
+```bash
+npm start
+```
