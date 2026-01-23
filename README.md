@@ -1,41 +1,38 @@
-## Existing app + Auth extension (Node.js + PostgreSQL)
+1. Install dependencies:
 
-Защищённая зона — это основное приложение (Articles) с CRUD-операциями, которые доступны только при валидном JWT.
-
-### База данных (pgAdmin)
-1) Создай базу `auth_jwt_pg`
-2) Выполни миграцию: `migrations/001_init.sql`
-
-Там создаются:
-- `users`
-- `articles`
-
-### Env
-В репозитории есть `.env.example`.
-Скопируй в `.env` и заполни `DATABASE_URL` и `JWT_SECRET`.
-
-### Запуск
 ```bash
-npm i
-npm run dev
+npm install
 ```
 
-### Страницы
-Public:
-- `/register.html`
-- `/login.html`
+2. Create a PostgreSQL database, for example:
 
-Protected:
-- `/app.html` (основное приложение: статьи)
+```sql
+CREATE DATABASE versioned_articles;
+```
 
-### API
-Public:
-- `POST /api/register`
-- `POST /api/login`
-- `POST /api/logout`
+3. Configure environment:
 
-Protected:
-- `GET /api/me`
-- `GET /api/articles`
-- `POST /api/articles`
-- `DELETE /api/articles/:id`
+- copy `.env.example` to `.env`
+
+Example `.env`:
+
+```env
+PGHOST=localhost
+PGPORT=5432
+PGUSER=postgres
+PGPASSWORD=postgres
+PGDATABASE=versioned_articles
+PORT=3000
+```
+
+4. Sync schema from Sequelize models and seed default workspaces:
+
+```bash
+npm run sync-db
+```
+
+5. Start the app:
+
+```bash
+npm start
+```
