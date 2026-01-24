@@ -1,38 +1,39 @@
-FINAL PROJECT – Assignments 9 + 10 (RBAC + Search)
+1. Install dependencies:
 
-This project fully implements:
-- Assignment 9: User Management (RBAC: admin / user)
-- Assignment 10: Article Search (title + content)
-
-Features:
-- Users have roles (admin / user)
-- Only article owner OR admin can edit/delete articles
-- Admin-only User Management page:
-  - View all users
-  - Change user roles
-- Backend enforces RBAC on protected endpoints
-- Search by title OR content (case-insensitive)
-- Search integrated into article list page
-
-Tech:
-- Backend: Node.js + Express + SQLite (better-sqlite3) + JWT
-- Frontend: React + Vite
-
-Run:
-
-Backend:
-cd backend
+```bash
 npm install
-mkdir data
-npm run migrate
-npm run seed:admin
-npm run dev
+```
 
-Frontend:
-cd frontend
-npm install
-npm run dev
+2. Create a PostgreSQL database (example):
 
-Admin login:
-email: admin@example.com
-password: admin12345
+```sql
+CREATE DATABASE versioned_articles;
+```
+
+3. Configure environment:
+
+- copy `.env.example` to `.env`
+- update DB credentials if needed
+
+Example `.env`:
+
+```env
+PORT=3000
+DB_HOST=localhost
+DB_USER=postgres
+DB_PASSWORD=postgres
+DB_NAME=versioned_articles
+JWT_SECRET=supersecret
+```
+
+4. Sync schema from Sequelize models and seed default workspaces:
+
+```bash
+npm run sync-db
+```
+
+5. Start the app:
+
+```bash
+npm start
+```

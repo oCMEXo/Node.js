@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Management</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 0; background: #f3f4f6; }
+    header { background: #111827; color: white; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    header a { color: #e5e7eb; text-decoration: none; margin-right: 1rem; }
+    header a:hover { color: white; }
+    main { max-width: 960px; margin: 1.5rem auto 2rem; background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: .75rem; border-bottom: 1px solid #e5e7eb; text-align: left; }
+    .muted { color: #6b7280; font-size: .95rem; }
+    select { padding: .35rem .5rem; border-radius: .5rem; border: 1px solid #d1d5db; }
+    button { padding: .35rem .7rem; border-radius: .5rem; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <a href="/workspaces"><strong>Workspaces</strong></a>
+      <span class="muted" style="margin-left: .75rem;">Admin: <%= currentUser.email %></span>
+    </div>
+    <div>
+      <a href="/logout">Logout</a>
+    </div>
+  </header>
+
+  <main>
+    <h2>User Management</h2>
+    <p class="muted">Admins can view all users and change roles.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Change role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(u => { %>
+          <tr>
+            <td><%= u.id %></td>
+            <td><%= u.email %></td>
+            <td><strong><%= u.role %></strong></td>
+            <td>
+              <% if (u.id === currentUser.id) { %>
+                <span class="muted">You cannot change your own role here</span>
+              <% } else { %>
+                <form method="post" action="/admin/users/<%= u.id %>/role" style="display:flex; gap:.5rem; align-items:center;">
+                  <select name="role">
+                    <option value="user" <%= u.role === 'user' ? 'selected' : '' %>>user</option>
+                    <option value="admin" <%= u.role === 'admin' ? 'selected' : '' %>>admin</option>
+                  </select>
+                  <button type="submit">Save</button>
+                </form>
+              <% } %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>
