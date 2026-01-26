@@ -19,53 +19,40 @@ function pickLatestVersion(versions) {
 }
 
 exports.listByWorkspace = async (req, res, next) => {
-  try {
-    const workspaceId = req.params.workspaceId;
-    const workspace = await Workspace.findByPk(workspaceId);
-    if (!workspace) {
-      return res.status(404).send("Workspace not found");
+    try {
+        const workspaceId = req.params.workspaceId;
+        const searchText = (req.query.query || "").trim();
+
+        const versionWhere = searchText
+            ? {
+                [Op.or]: [
+                    { title: { [Op.iLike]: `%${searchText}%` } },
+                    { body: { [Op.iLike]: `%${searchText}%` } }
+                ]
+            }
+            : undefined;
+
+        const articles = await Article.findAll({
+            where: { workspaceId },
+            include: [
+                {
+                    model: ArticleVersion,
+                    as: "versions",
+                    where: versionWhere,
+                    required: !!versionWhere,
+                    attributes: ["title", "body"]
+                }
+            ]
+        });
+
+        res.render("articles", {
+            articles,
+            workspaceId,
+            query: searchText
+        });
+    } catch (err) {
+        next(err);
     }
-
-    const workspaces = await Workspace.findAll({ order: [["name", "ASC"]] });
-
-    const searchText = (req.query.query || "").trim();
-
-const versionWhere = searchText ? {
-  [Op.or]: [
-    { title: { [Op.iLike]: `%${searchText}%` } },
-    { body: { [Op.iLike]: `%${searchText}%` } }
-  ]
-} : undefined;
-
-const articles = await Article.findAll({
-  where: { workspaceId },
-  include: [
-    {
-      model: ArticleVersion,
-      as: "versions",
-      where: versionWhere,
-      required: !!versionWhere
-    },
-    { model: Comment, as: "comments", attributes: ["id"] }
-  ],
-  order: [["created_at", "DESC"]]
-});
-
-    const items = articles.map(a => {
-      const latest = pickLatestVersion(a.versions || []);
-      return {
-        id: a.id,
-        title: latest ? latest.title : "(no title)",
-        created_at: a.created_at,
-        comment_count: (a.comments || []).length,
-        latest_version: latest ? latest.versionNumber : 0
-      };
-    });
-
-    res.render("articles", { workspace, workspaces, articles: items });
-  } catch (err) {
-    next(err);
-  }
 };
 
 exports.newForm = async (req, res, next) => {
