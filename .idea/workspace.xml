@@ -1,48 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3c708d62-0a6a-4723-b278-b352cc4673ec" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/database.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/adminController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/articleController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/authController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/commentController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/workspaceController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middleware/admin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middleware/auth.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/article.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/articleVersion.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/comment.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/user.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/workspace.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/adminRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/articleRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/auth.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/commentRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/workspaceRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sync-db.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/article_detail.ejs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/article_form.ejs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/articles.ejs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login.ejs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/register.ejs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user_management.ejs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/workspace_form.ejs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/workspaces.ejs" beforeDir="false" />
-    </list>
+    <list default="true" id="3c708d62-0a6a-4723-b278-b352cc4673ec" name="Changes" comment="Done HM10" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Search" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory"><![CDATA[{
@@ -70,10 +40,15 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "Search",
+    "git-widget-placeholder": "SearchHM10",
     "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
@@ -98,11 +73,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1769454130292</updated>
-      <workItem from="1769454133682" duration="89000" />
+      <workItem from="1769454133682" duration="405000" />
     </task>
+    <task id="LOCAL-00001" summary="Done HM10">
+      <option name="closed" value="true" />
+      <created>1769454462910</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1769454462910</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Done HM10" />
+    <option name="LAST_COMMIT_MESSAGE" value="Done HM10" />
   </component>
 </project>
