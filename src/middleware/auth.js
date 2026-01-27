@@ -1,24 +1,28 @@
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 
-module.exports = async (req, res, next) => {
-  const token = req.cookies?.token;
-  if (!token) return res.redirect('/login');
+module.exports = (req, res, next) => {
+    const publicPaths = [
+        "/login",
+        "/register"
+    ];
 
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const token = req.cookies.token;
 
-    const user = await User.findByPk(decoded.id, { attributes: ['id', 'email', 'role'] });
-    if (!user) {
-      res.clearCookie('token');
-      return res.redirect('/login');
+    if (token) {
+        try {
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            req.user = decoded;
+        } catch (err) {
+            req.user = null;
+        }
     }
 
-    req.user = user.toJSON();
-    res.locals.currentUser = req.user;
+    if (!publicPaths.includes(req.path)) {
+        if (!req.user) {
+            return res.redirect("/login");
+        }
+    }
+
     next();
-  } catch {
-    res.clearCookie('token');
-    return res.redirect('/login');
-  }
 };

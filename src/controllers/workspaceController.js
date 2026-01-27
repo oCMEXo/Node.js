@@ -19,8 +19,12 @@ exports.create = async (req, res, next) => {
     return res.status(400).send("Workspace name is required.");
   }
   try {
-    await Workspace.create({ name });
-    res.redirect("/workspaces");
+    const workspace = await Workspace.create({ name });
+    if (req.accepts('json')) {
+      res.status(201).location(`/workspaces/${workspace.id}`).json(workspace);
+    } else {
+      res.redirect(`/workspaces/${workspace.id}`);
+    }
   } catch (err) {
     next(err);
   }

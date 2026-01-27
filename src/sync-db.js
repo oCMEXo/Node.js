@@ -5,11 +5,9 @@ const { sequelize, Workspace, User } = require("./models");
     await sequelize.authenticate();
     console.log("Connected to PostgreSQL");
 
-    // Update schema based on current Sequelize models
     await sequelize.sync({ alter: true });
     console.log("Schema synced from models");
 
-    // Seed default workspaces
     const count = await Workspace.count();
     if (count === 0) {
       await Workspace.bulkCreate([
@@ -19,7 +17,6 @@ const { sequelize, Workspace, User } = require("./models");
       console.log("Seeded default workspaces");
     }
 
-    // Backfill roles if any existing users have NULL role
     if (User) {
       await User.update({ role: "user" }, { where: { role: null } });
     }

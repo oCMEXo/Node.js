@@ -22,7 +22,6 @@ exports.updateUserRole = async (req, res, next) => {
       return res.status(400).send('Invalid role.');
     }
 
-    // prevent admin from removing own admin role accidentally
     if (req.user.id === targetUserId && role !== 'admin') {
       return res.status(400).send('You cannot remove your own admin role.');
     }

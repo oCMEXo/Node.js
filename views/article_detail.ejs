@@ -1,147 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Article</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 0; background: #f3f4f6; }
-    header { background: #111827; color: white; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
-    header a { color: #e5e7eb; text-decoration: none; margin-right: 1rem; }
-    header a:hover { color: white; }
-    main { max-width: 960px; margin: 1.5rem auto 2rem; background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); }
-    .btn { display: inline-block; padding: .5rem .9rem; border-radius: .5rem; border: none; cursor: pointer; text-decoration: none; font-size: 0.9rem; }
-    .btn-primary { background: #2563eb; color: white; }
-    .btn-secondary { background: #6b7280; color: white; }
-    .btn-danger { background: #dc2626; color: white; }
-    .btn-sm { padding: 0.3rem 0.5rem; font-size: 0.8rem; }
-    .btn + .btn { margin-left: .25rem; }
-    form { margin: 0; }
-    label { display: block; margin-bottom: .25rem; font-weight: 600; }
-    input[type=text], textarea, select { width: 100%; padding: .5rem .6rem; border-radius: .5rem; border: 1px solid #d1d5db; margin-bottom: .75rem; font-size: 0.95rem; }
-    textarea { min-height: 120px; resize: vertical; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: .5rem .3rem; border-bottom: 1px solid #e5e7eb; text-align: left; font-size: 0.9rem; vertical-align: top; }
-    th { background: #f9fafb; font-weight: 600; }
-    .muted { color: #6b7280; font-size: 0.85rem; }
-    .workspace-switcher { margin-bottom: 1rem; padding-bottom: .75rem; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
-    .workspace-switcher select { width: auto; min-width: 200px; }
-    .tag { display: inline-block; padding: .1rem .45rem; font-size: .75rem; border-radius: 999px; background: #e5e7eb; color: #374151; }
-    .comment { border: 1px solid #e5e7eb; border-radius: .5rem; padding: .5rem .6rem; margin-bottom: .5rem; background: #f9fafb; }
-    .comment-header { display: flex; justify-content: space-between; font-size: .8rem; color: #6b7280; margin-bottom: .25rem; }
-    .article-body { white-space: pre-wrap; font-size: 0.95rem; line-height: 1.45; }
-    .attachment { margin-top: .5rem; font-size: .85rem; }
-    .version-badge { display: inline-block; padding: .1rem .4rem; border-radius: 999px; font-size: .7rem; margin-left: .25rem; background: #e0f2fe; color: #0369a1; }
-    .version-warning { background: #fef3c7; border-radius: .5rem; padding: .4rem .6rem; font-size: .85rem; margin-bottom: .75rem; color: #92400e; }
-    .versions-list { margin-top: 1rem; font-size: .85rem; }
-    .versions-list ul { list-style: none; padding-left: 0; }
-    .versions-list li { margin-bottom: .2rem; }
-</style>
+    <meta charset="UTF-8">
+    <title>Article</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f3f4f6;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header a {
+            color: #e5e7eb;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+
+        header a:hover {
+            color: white;
+        }
+
+        main {
+            max-width: 960px;
+            margin: 1.5rem auto 2rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: .5rem .9rem;
+            border-radius: .5rem;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #dc2626;
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 0.3rem 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .btn-export {
+            background: #059669;
+            color: white;
+        }
+
+        .btn-export:hover {
+            background: #047857;
+        }
+
+        .btn + .btn {
+            margin-left: .25rem;
+        }
+
+        form {
+            margin: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: .25rem;
+            font-weight: 600;
+        }
+
+        input[type=text], textarea, select {
+            width: 100%;
+            padding: .5rem .6rem;
+            border-radius: .5rem;
+            border: 1px solid #d1d5db;
+            margin-bottom: .75rem;
+            font-size: 0.95rem;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: .5rem .3rem;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: left;
+            font-size: 0.9rem;
+            vertical-align: top;
+        }
+
+        th {
+            background: #f9fafb;
+            font-weight: 600;
+        }
+
+        .muted {
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+
+        .workspace-switcher {
+            margin-bottom: 1rem;
+            padding-bottom: .75rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: .5rem;
+        }
+
+        .workspace-switcher select {
+            width: auto;
+            min-width: 200px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: .1rem .45rem;
+            font-size: .75rem;
+            border-radius: 999px;
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .comment {
+            border: 1px solid #e5e7eb;
+            border-radius: .5rem;
+            padding: .5rem .6rem;
+            margin-bottom: .5rem;
+            background: #f9fafb;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: .8rem;
+            color: #6b7280;
+            margin-bottom: .25rem;
+        }
+
+        .article-body {
+            white-space: pre-wrap;
+            font-size: 0.95rem;
+            line-height: 1.45;
+        }
+
+        .attachment {
+            margin-top: .5rem;
+            font-size: .85rem;
+        }
+
+        .version-badge {
+            display: inline-block;
+            padding: .1rem .4rem;
+            border-radius: 999px;
+            font-size: .7rem;
+            margin-left: .25rem;
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+
+        .version-warning {
+            background: #fef3c7;
+            border-radius: .5rem;
+            padding: .4rem .6rem;
+            font-size: .85rem;
+            margin-bottom: .75rem;
+            color: #92400e;
+        }
+
+        .versions-list {
+            margin-top: 1rem;
+            font-size: .85rem;
+        }
+
+        .versions-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .versions-list li {
+            margin-bottom: .2rem;
+        }
+    </style>
 </head>
 <body>
 <header>
-  <div>
-    <a href="/workspaces"><strong>Workspaces</strong></a>
-    <% if (typeof currentUser !== 'undefined' && currentUser) { %>
-      <span class="muted" style="margin-left: .75rem;">Logged in as <%= currentUser.email %> (<%= currentUser.role %>)</span>
-    <% } %>
-  </div>
-  <div>
-    <% if (typeof currentUser !== 'undefined' && currentUser && currentUser.role === 'admin') { %>
-      <a href="/admin/users">User Management</a>
-    <% } %>
-    <% if (typeof currentUser !== 'undefined' && currentUser) { %>
-      <a href="/logout">Logout</a>
-    <% } %>
-  </div>
+    <div>
+        <a href="/workspaces"><strong>Workspaces</strong></a>
+        <% if (typeof currentUser !== 'undefined' && currentUser) { %>
+            <span class="muted"
+                  style="margin-left: .75rem;">Logged in as <%= currentUser.email %> (<%= currentUser.role %>)</span>
+        <% } %>
+    </div>
+    <div>
+        <% if (typeof currentUser !== 'undefined' && currentUser && currentUser.role === 'admin') { %>
+            <a href="/admin/users">User Management</a>
+        <% } %>
+        <% if (typeof currentUser !== 'undefined' && currentUser) { %>
+            <a href="/logout">Logout</a>
+        <% } %>
+    </div>
 </header>
 <main>
 
-<h1><%= currentVersion.title %></h1>
+    <h1><%= currentVersion.title %></h1>
 
-<p class="muted">
-  Workspace: <strong><%= workspace.name %></strong>
-  <span class="version-badge">v<%= currentVersion.versionNumber %></span>
-  <% if (!isLatest) { %>
-    <span class="version-badge" style="background:#fee2e2;color:#b91c1c;">old version</span>
-  <% } else { %>
-    <span class="version-badge" style="background:#dcfce7;color:#166534;">latest</span>
-  <% } %>
-</p>
-
-<% if (!isLatest) { %>
-  <div class="version-warning">
-    You are viewing an older, read-only version of this article. Editing is only allowed for the latest version (v<%= latestVersionNumber %>).
-  </div>
-<% } %>
-
-<div class="article-body">
-  <%= currentVersion.body %>
-</div>
-
-<% if (currentVersion.attachmentFilename) { %>
-  <div class="attachment">
-    Attachment for this version:
-    <a href="/uploads/<%= currentVersion.attachmentFilename %>" target="_blank"><%= currentVersion.attachmentFilename %></a>
-  </div>
-<% } %>
-
-<p style="margin-top:1rem;">
-  <a href="/workspaces/<%= workspace.id %>/articles" class="btn btn-secondary">Back to list</a>
-  <% if (isLatest) { %>
-    <% if (currentUser && (currentUser.role === "admin" || currentUser.id === article.creatorId)) { %>
-      <a href="/articles/<%= article.id %>/edit" class="btn btn-primary">Edit (creates new version)</a>
-    <% } %>
-  <% } %>
-</p>
-
-<div class="versions-list">
-  <h2>Versions</h2>
-  <p class="muted">Select a version to view its content. Older versions are read-only.</p>
-  <ul>
-    <% versions.forEach(function(v){ %>
-      <li>
-        <% if (v.id === currentVersion.id) { %>
-          <strong>v<%= v.versionNumber %> (current)</strong>
+    <p class="muted">
+        Workspace: <strong><%= workspace.name %></strong>
+        <span class="version-badge">v<%= currentVersion.versionNumber %></span>
+        <% if (!isLatest) { %>
+            <span class="version-badge" style="background:#fee2e2;color:#b91c1c;">old version</span>
         <% } else { %>
-          <a href="/articles/<%= article.id %>?version=<%= v.versionNumber %>">v<%= v.versionNumber %></a>
+            <span class="version-badge" style="background:#dcfce7;color:#166534;">latest</span>
         <% } %>
-        <span class="muted"> — created at <%= v.created_at ? v.created_at.toISOString ? v.created_at.toISOString() : v.created_at : '' %></span>
-      </li>
-    <% }); %>
-  </ul>
-</div>
+    </p>
 
-<div style="margin-top:1.5rem;">
-  <h2>Comments</h2>
-
-  <% if (!comments || comments.length === 0) { %>
-    <p class="muted">No comments yet.</p>
-  <% } else { %>
-    <% comments.forEach(function(c){ %>
-      <div class="comment">
-        <div class="comment-header">
-          <span><strong><%= c.author %></strong></span>
-          <span><%= c.created_at ? c.created_at.toISOString ? c.created_at.toISOString() : c.created_at : '' %></span>
+    <% if (!isLatest) { %>
+        <div class="version-warning">
+            You are viewing an older, read-only version of this article. Editing is only allowed for the latest version
+            (v<%= latestVersionNumber %>).
         </div>
-        <div><%= c.body %></div>
-        <form method="POST" action="/comments/<%= c.id %>" onsubmit="return confirm('Delete this comment?');">
-          <input type="hidden" name="_method" value="DELETE">
-          <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-        </form>
-      </div>
-    <% }); %>
-  <% } %>
+    <% } %>
 
-  <h3>Add comment</h3>
-  <form method="POST" action="/articles/<%= article.id %>/comments">
-    <label for="author">Name</label>
-    <input type="text" id="author" name="author" required>
-    <label for="body">Comment</label>
-    <textarea id="body" name="body" required></textarea>
-    <button type="submit" class="btn btn-primary">Add comment</button>
-  </form>
-</div>
+    <div class="article-body">
+        <%= currentVersion.body %>
+    </div>
+
+    <% if (currentVersion.attachmentFilename) { %>
+        <div class="attachment">
+            Attachment for this version:
+            <a href="/uploads/<%= currentVersion.attachmentFilename %>"
+               target="_blank"><%= currentVersion.attachmentFilename %></a>
+        </div>
+    <% } %>
+
+    <p style="margin-top:1rem;">
+        <a href="/workspaces/<%= workspace.id %>/articles" class="btn btn-secondary">Back to list</a>
+        <% if (isLatest) { %>
+            <% if (currentUser && (currentUser.role === "admin" || currentUser.id === article.creatorId)) { %>
+                <a href="/articles/<%= article.id %>/edit" class="btn btn-primary">Edit (creates new version)</a>
+            <% } %>
+        <% } %>
+        <a href="/articles/<%= article.id %>/export" class="btn btn-export">📄 Export as PDF</a>
+    </p>
+
+    <div class="versions-list">
+        <h2>Versions</h2>
+        <p class="muted">Select a version to view its content. Older versions are read-only.</p>
+        <ul>
+            <% versions.forEach(function(v){ %>
+                <li>
+                    <% if (v.id === currentVersion.id) { %>
+                        <strong>v<%= v.versionNumber %> (current)</strong>
+                    <% } else { %>
+                        <a href="/articles/<%= article.id %>?version=<%= v.versionNumber %>">v<%= v.versionNumber %></a>
+                    <% } %>
+                    <span class="muted"> — created at <%= v.created_at ? v.created_at.toISOString ? v.created_at.toISOString() : v.created_at : '' %></span>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+
+    <div style="margin-top:1.5rem;">
+        <h2>Comments</h2>
+
+        <% if (!comments || comments.length === 0) { %>
+            <p class="muted">No comments yet.</p>
+        <% } else { %>
+            <% comments.forEach(function(c){ %>
+                <div class="comment">
+                    <div class="comment-header">
+                        <span><strong><%= c.author %></strong></span>
+                        <span><%= c.created_at ? c.created_at.toISOString ? c.created_at.toISOString() : c.created_at : '' %></span>
+                    </div>
+                    <div><%= c.body %></div>
+                    <form method="POST" action="/comments/<%= c.id %>"
+                          onsubmit="return confirm('Delete this comment?');">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </div>
+            <% }); %>
+        <% } %>
+
+        <h3>Add comment</h3>
+        <form method="POST" action="/articles/<%= article.id %>/comments">
+            <label for="author">Name</label>
+            <input type="text" id="author" name="author" required>
+            <label for="body">Comment</label>
+            <textarea id="body" name="body" required></textarea>
+            <button type="submit" class="btn btn-primary">Add comment</button>
+        </form>
+    </div>
 
 </main>
 </body>
