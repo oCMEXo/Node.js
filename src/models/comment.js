@@ -19,6 +19,11 @@ module.exports = sequelize => {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW
+    },
+    articleId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: "article_id"
     }
   }, {
     tableName: "comments",

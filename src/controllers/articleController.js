@@ -58,7 +58,7 @@ exports.listByWorkspace = async (req, res, next) => {
                 id: article.id,
                 title: latestVersion ? latestVersion.title : "Untitled",
                 latest_version: article.versions.length,
-                comment_count: article.commentCount || 0
+                comment_count: 0
             };
         });
 
@@ -129,7 +129,7 @@ exports.detail = async (req, res, next) => {
 
         const versions = article.versions || [];
         const latest = pickLatestVersion(versions);
-        if (!latest) return res.status(500).send("No versions");
+        if (!latest) return res.status(400).send("Article has no versions");
 
         const versionNumber = req.query.version
             ? Number(req.query.version)

@@ -44,10 +44,12 @@ ArticleVersion.belongsTo(Article, {
 });
 
 Article.hasMany(Comment, {
-    foreignKey: "articleId"
+    foreignKey: "articleId",
+    as: "comments"
 });
 Comment.belongsTo(Article, {
-    foreignKey: "articleId"
+    foreignKey: "articleId",
+    as: "article"
 });
 
 User.hasMany(Article, {
