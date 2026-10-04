@@ -16,7 +16,7 @@ function printUsage() {
   console.log(lines.join("\n"));
 }
 
-function parseArgs(argv) {
+function parseArconsole.log(123)gs(argv) {
   const args = argv.slice(2);
   const result = {
     type: null,
